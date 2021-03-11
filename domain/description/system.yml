@@ -1,0 +1,10 @@
+---
+display_name: 系统
+structs:
+  name:
+    type: name
+  key:
+    type: secret
+repeat_check_structs:
+  - name
+...

@@ -1,0 +1,17 @@
+---
+display_name: 标签与目标的关联
+structs:
+  class:
+    type: name
+    display_name: 目标类型
+  class_id:
+    type: id
+    display_name: 目标ID
+  description:
+    type: description
+    require: false
+  whatever:
+    type: name
+    require: true
+repeat_check_structs: []
+...

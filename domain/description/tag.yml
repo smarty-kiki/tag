@@ -1,0 +1,7 @@
+---
+display_name: 标签
+structs:
+  name:
+    type: name
+repeat_check_structs: []
+...

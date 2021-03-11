@@ -1,2 +1,74 @@
 ---
+- from:
+    entity: system
+    to_attribute_name: system
+    to_display: "$this->name"
+    to_snaps: []
+  to:
+    entity: group
+    from_attribute_name: groups
+    from_display: "$this->id"
+    from_snaps: []
+  relationship_type: has_many
+  association_type: composition
+- from:
+    entity: system
+    to_attribute_name: system
+    to_display: "$this->id"
+    to_snaps: []
+  to:
+    entity: tag
+    from_attribute_name: tags
+    from_display: "$this->id"
+    from_snaps: []
+  relationship_type: has_many
+  association_type: composition
+- from:
+    entity: system
+    to_attribute_name: system
+    to_display: "$this->name"
+    to_snaps: []
+  to:
+    entity: tag_target
+    from_attribute_name: tag_targets
+    from_display: "$this->id"
+    from_snaps: []
+  relationship_type: has_many
+  association_type: composition
+- from:
+    entity: group
+    to_attribute_name: parent_group
+    to_display: "$this->name"
+    to_snaps: []
+  to:
+    entity: group
+    from_attribute_name: groups
+    from_display: "$this->id"
+    from_snaps: []
+  relationship_type: has_many
+  association_type: aggregation
+- from:
+    entity: group
+    to_attribute_name: group
+    to_display: "$this->id"
+    to_snaps: []
+  to:
+    entity: tag
+    from_attribute_name: tags
+    from_display: "$this->id"
+    from_snaps: []
+  relationship_type: has_many
+  association_type: aggregation
+- from:
+    entity: tag
+    to_attribute_name: tag
+    to_display: "$this->id"
+    to_snaps: []
+  to:
+    entity: tag_target
+    from_attribute_name: tag_targets
+    from_display: "$this->id"
+    from_snaps: []
+  relationship_type: has_many
+  association_type: composition
 ...

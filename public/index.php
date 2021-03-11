@@ -47,6 +47,10 @@ if_not_found(function () {
 });
 
 // init controller
+include CONTROLLER_DIR.'/tag_target.php';
+include CONTROLLER_DIR.'/system.php';
+include CONTROLLER_DIR.'/tag.php';
+include CONTROLLER_DIR.'/group.php';
 include CONTROLLER_DIR.'/index.php';
 
 // fix
