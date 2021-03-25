@@ -10,8 +10,5 @@ structs:
   description:
     type: description
     require: false
-  whatever:
-    type: name
-    require: true
 repeat_check_structs: []
 ...

@@ -93,3 +93,28 @@ if_post('/tags_bind_targets', function ()
         ],
     ];
 });/*}}}*/
+
+if_post('/query_tag_targets_count', function ()
+{/*{{{*/
+    $key = input_json('key');
+    otherwise_error_code(10001, $key);
+
+    $system = dao('system')->find_by_key($key);
+    otherwise_error_code(10002, $system->is_not_null(), [':key' => $key]);
+
+    $class = input_json('class');
+    otherwise_error_code(30001, $class);
+
+    $query_ast = input_json('query_ast_json');
+    otherwise_error_code(30004, not_empty($query_ast));
+
+    $ids = tag_target_query_ids($system, $class, $query_ast, 0, 10);
+
+    return [
+        'code' => 0,
+        'msg' => '',
+        'data' => [
+            'ids' => $ids,
+        ],
+    ];
+});/*}}}*/

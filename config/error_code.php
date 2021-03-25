@@ -16,6 +16,7 @@ return [
     30001 => '未传入 class',
     30002 => '未传入 class_ids',
     30003 => '未传入 tag_id',
+    30004 => '未传入 query_ast_json',
 
     // tag
     40001 => '未传入 name',

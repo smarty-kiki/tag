@@ -24,7 +24,6 @@ tag_target : +tag_id
 tag_target : +class  
 tag_target : +class_id  
 tag_target : +description  
-tag_target : +whatever  
 ```
 
 
@@ -47,7 +46,6 @@ erDiagram
         string class  
         number class_id  
         string description  
-        string whatever  
     }
 ```
 
@@ -72,7 +70,6 @@ erDiagram
 |class|string|必传|目标类型|名称|
 |class_id|number|必传|目标ID|ID|
 |description|string|可选|描述|描述|
-|whatever|string|必传|名称|名称|
 
 
 

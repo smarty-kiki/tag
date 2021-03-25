@@ -21,7 +21,6 @@
 |class|string|可选|通过目标类型筛选|
 |class_id|number|可选|通过目标ID筛选|
 |description|string|可选|通过描述筛选|
-|whatever|string|可选|通过名称筛选|
 |system_id|id|可选|通过关联关系 `system_id` 筛选|
 |tag_id|id|可选|通过关联关系 `tag_id` 筛选|
 
@@ -41,11 +40,10 @@
     "class": "string", // 目标类型 
     "class_id": 0, // 目标ID 
     "description": "string", // 描述 
-    "whatever": "string", // 名称 
     "system_display": "", // 关联关系 `system` 的文字化展示
     "tag_display": "", // 关联关系 `tag` 的文字化展示
-    "create_time": "2021-03-11 13:31:17", // 创建时间
-    "update_time": "2021-03-11 13:31:17", // 最后一次修改时间
+    "create_time": "2021-03-14 00:48:30", // 创建时间
+    "update_time": "2021-03-14 00:48:30", // 最后一次修改时间
 }
 ```
 
@@ -74,7 +72,6 @@
 |class|string|必传|目标类型|
 |class_id|number|必传|目标ID|
 |description|string|可选|描述|
-|whatever|string|必传|名称|
 
 **返回值：**  
 ```json
@@ -118,7 +115,6 @@
 |class|string|必传|目标类型|
 |class_id|number|必传|目标ID|
 |description|string|可选|描述|
-|whatever|string|必传|名称|
 
 **返回值：**  
 ```json

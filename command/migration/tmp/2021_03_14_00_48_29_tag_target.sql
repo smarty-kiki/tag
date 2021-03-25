@@ -8,7 +8,6 @@ create table if not exists `tag_target` (
     `class` varchar(30) default null,
     `class_id` int(11) not null default 0,
     `description` varchar(200) default null,
-    `whatever` varchar(30) default null,
     `system_id` bigint(20) unsigned not null,
     `tag_id` bigint(20) unsigned not null,
     key `fk_system_idx` (`system_id`, `delete_time`),

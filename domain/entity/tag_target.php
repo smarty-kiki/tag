@@ -2,6 +2,10 @@
 
 class tag_target extends entity
 {
+    const REDIS_KEY_PREFIX = 'TAG_TARGET_';
+
+    const BIT_STEP = 8;
+
     /* generated code start */
     public $structs = [
         'system_id' => 0,
@@ -9,7 +13,6 @@ class tag_target extends entity
         'class' => '',
         'class_id' => 0,
         'description' => '',
-        'whatever' => '',
     ];
 
     public static $struct_data_types = [
@@ -18,7 +21,6 @@ class tag_target extends entity
         'class' => 'string',
         'class_id' => 'number',
         'description' => 'string',
-        'whatever' => 'string',
     ];
 
     public static $struct_display_names = [
@@ -27,7 +29,6 @@ class tag_target extends entity
         'class' => '目标类型',
         'class_id' => '目标ID',
         'description' => '描述',
-        'whatever' => '名称',
     ];
 
 
@@ -37,7 +38,6 @@ class tag_target extends entity
         'class' => true,
         'class_id' => true,
         'description' => false,
-        'whatever' => true,
     ];
 
     public function __construct()
@@ -46,7 +46,7 @@ class tag_target extends entity
         $this->belongs_to('tag');
     }/*}}}*/
 
-    public static function create(system $system, tag $tag, $class, $class_id, $whatever)
+    public static function create(system $system, tag $tag, $class, $class_id)
     {/*{{{*/
         $tag_target = parent::init();
 
@@ -54,7 +54,8 @@ class tag_target extends entity
         $tag_target->tag = $tag;
         $tag_target->class = $class;
         $tag_target->class_id = $class_id;
-        $tag_target->whatever = $whatever;
+
+        cache_setbit(self::REDIS_KEY_PREFIX.$system->id.'_'.$class.'_'.$tag->id, $class_id * self::BIT_STEP, 1);
 
         return $tag_target;
     }/*}}}*/
@@ -92,14 +93,6 @@ class tag_target extends entity
                     'failed_message' => '不能超过 200 个字',
                 ],
             ],
-            'whatever' => [
-                [
-                    'function' => function ($value) {
-                        return mb_strlen($value) <= 30;
-                    },
-                    'failed_message' => '不能超过 30 字',
-                ],
-            ],
         ];
 
         return $formaters[$property] ?? false;
@@ -125,4 +118,11 @@ class tag_target extends entity
         return $this->id;
     }/*}}}*/
     /* generated code end */
+
+    public function delete()
+    {/*{{{*/
+        cache_setbit(self::REDIS_KEY_PREFIX.$this->system_id.'_'.$this->class.'_'.$this->tag->id, $this->class_id * self::BIT_STEP, 0);
+
+        parent::delete();
+    }/*}}}*/
 }
