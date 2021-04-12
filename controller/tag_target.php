@@ -108,13 +108,13 @@ if_post('/query_tag_targets_count', function ()
     $query_ast = input_json('query_ast_json');
     otherwise_error_code(30004, not_empty($query_ast));
 
-    $ids = tag_target_query_ids($system, $class, $query_ast, 0, 10);
+    $count = tag_target_query_count($system, $class, $query_ast, 0, 10);
 
     return [
         'code' => 0,
         'msg' => '',
         'data' => [
-            'ids' => $ids,
+            'count' => $count,
         ],
     ];
 });/*}}}*/
