@@ -4,20 +4,34 @@ function tag_target_query_ids(system $system, $class, $ast, $start_class_id = 0,
 {/*{{{*/
     $key = tag_target_query_operation($system, $class, $ast);
 
+    $bitmap = unpack('C*', cache_get($key));
+
     $ids = [];
 
-    $position = $start_class_id;
+    $start_byte_offset = intval($start_class_id / 8);
 
-    do {
+    foreach ($bitmap as $offset => $byte) {
 
-        $res = cache_bitpos($key, 1, $position);
-        if ($res > 0) {
-            $position = $res / 8;
-            $ids[] = $position;
-            $position++;
-            $limit--;
+        if ($offset < $start_byte_offset || $byte == 0) {
+            continue;
         }
-    } while ($res > 0 && $limit > 0);
+
+        $start = ($offset - 1) * 8;
+
+        for ($i = 0; $i < 8; $i ++) {
+            if (($byte & 128) == 128) {
+                $class_id = $start + $i;
+                if ($class_id >= $start_class_id) {
+                    $ids[] = $class_id;
+                    $limit--;
+                    if ($limit == 0) {
+                        break(2);
+                    }
+                }
+            }
+            $byte = $byte << 1;
+        }
+    }
 
     cache_delete($key);
 
@@ -28,18 +42,32 @@ function tag_target_query_map(system $system, $class, $ast, closure $closure, $s
 {/*{{{*/
     $key = tag_target_query_operation($system, $class, $ast);
 
-    $position = $start_class_id;
+    $bitmap = unpack('C*', cache_get($key));
 
-    do {
+    $start_byte_offset = intval($start_class_id / 8);
 
-        $res = cache_bitpos($key, 1, $position);
-        if ($res > 0) {
-            $position = $res / 8;
-            call_user_func($closure, $position);
-            $position++;
-            $limit--;
+    foreach ($bitmap as $offset => $byte) {
+
+        if ($offset < $start_byte_offset || $byte == 0) {
+            continue;
         }
-    } while ($res > 0 && $limit > 0);
+
+        $start = ($offset - 1) * 8;
+
+        for ($i = 0; $i < 8; $i ++) {
+            if (($byte & 128) == 128) {
+                $class_id = $start + $i;
+                if ($class_id >= $start_class_id) {
+                    call_user_func($closure, $class_id);
+                    $limit--;
+                    if ($limit == 0) {
+                        break(2);
+                    }
+                }
+            }
+            $byte = $byte << 1;
+        }
+    }
 
     cache_delete($key);
 }/*}}}*/

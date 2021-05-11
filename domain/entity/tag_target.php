@@ -4,8 +4,6 @@ class tag_target extends entity
 {
     const REDIS_KEY_PREFIX = 'TAG_TARGET_';
 
-    const BIT_STEP = 8;
-
     /* generated code start */
     public $structs = [
         'system_id' => 0,
@@ -55,7 +53,7 @@ class tag_target extends entity
         $tag_target->class = $class;
         $tag_target->class_id = $class_id;
 
-        cache_setbit(self::REDIS_KEY_PREFIX.$system->id.'_'.$class.'_'.$tag->id, $class_id * self::BIT_STEP, 1);
+        cache_setbit(self::REDIS_KEY_PREFIX.$system->id.'_'.$class.'_'.$tag->id, $class_id, 1);
 
         return $tag_target;
     }/*}}}*/
@@ -121,7 +119,7 @@ class tag_target extends entity
 
     public function delete()
     {/*{{{*/
-        cache_setbit(self::REDIS_KEY_PREFIX.$this->system_id.'_'.$this->class.'_'.$this->tag->id, $this->class_id * self::BIT_STEP, 0);
+        cache_setbit(self::REDIS_KEY_PREFIX.$this->system_id.'_'.$this->class.'_'.$this->tag->id, $this->class_id, 0);
 
         parent::delete();
     }/*}}}*/

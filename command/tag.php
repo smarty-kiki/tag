@@ -20,7 +20,7 @@ command('tag:rebuild-query-booster', '重新生成 tag 的查询加速', functio
             $tmp_key = 'REBUILD_'.$key;
             $key_infos[$tmp_key] = $key;
 
-            cache_setbit($tmp_key, $tt['class_id'] * tag_target::BIT_STEP, 1);
+            cache_setbit($tmp_key, $tt['class_id'], 1);
 
             $start_tag_target_id = $tt['id'];
         }
@@ -47,7 +47,8 @@ command('tag:init-data-for-test', '生成测试数据', function ()
         return $tags;
     });
 
-    for ($i = 0; $i < 1000000; $i ++) {
+    $customer_count = 1000;
+    for ($i = 1; $i < (1 + $customer_count); $i ++) {
         echo "初始化 customer $i 标签\n";
         $tag_ids = array_rand($tags, 200);
         unit_of_work(function () use ($tag_ids, $tags, $system, $i) {
