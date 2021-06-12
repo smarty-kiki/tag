@@ -24,6 +24,7 @@ group : +delete_time
 group : +system_id  
 group : +parent_group_id  
 group : +name  
+group : +extends_info  
 ```
 
 
@@ -46,6 +47,7 @@ erDiagram
         id system_id  
         id parent_group_id  
         string name  
+        string extends_info  
     }
 ```
 
@@ -70,6 +72,7 @@ erDiagram
 |parent_group_id|id|无需|外键|分组所属的分组，此处为分组的`id`|
 |tags|[tag](entity/tag.md)|可选|关联关系|分组拥有的标签，是包含 `tag` 的数组|
 |name|string|必传|名称|名称|
+|extends_info|string|可选|描述|扩展信息|
 
 
 

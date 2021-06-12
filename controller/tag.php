@@ -50,10 +50,14 @@ if_post('/tags/add', function ()
     $system = dao('system')->find_by_key($key);
     otherwise_error_code(10002, $system->is_not_null(), [':key' => $key]);
 
+    $extends_info = input('extends_info', '');
+
     $tag = tag::create(
         $system,
         $name
     );
+
+    $tag->extends_info = $extends_info;
 
     if ($group_id = input('group_id')) {
         $group = dao('group')->find($group_id);
@@ -96,6 +100,11 @@ if_post('/tags/update/*', function ($tag_id)
     }
 
     $tag->name = $name;
+
+    $extends_info = input('extends_info', null);
+    if (not_null($extends_info)) {
+        $tag->extends_info = $extends_info;
+    }
 
     return [
         'code' => 0,

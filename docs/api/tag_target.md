@@ -42,8 +42,8 @@
     "description": "string", // 描述 
     "system_display": "", // 关联关系 `system` 的文字化展示
     "tag_display": "", // 关联关系 `tag` 的文字化展示
-    "create_time": "2021-03-14 00:48:30", // 创建时间
-    "update_time": "2021-03-14 00:48:30", // 最后一次修改时间
+    "create_time": "2021-06-12 17:16:55", // 创建时间
+    "update_time": "2021-06-12 17:16:55", // 最后一次修改时间
 }
 ```
 

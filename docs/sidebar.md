@@ -1,13 +1,13 @@
 - 入门指南
   - [开始上手](intro.md)
 - 接口文档
-  - [标签与目标的关联](api/tag_target.md)
-  - [系统](api/system.md)
   - [标签](api/tag.md)
   - [分组](api/group.md)
+  - [标签与目标的关联](api/tag_target.md)
+  - [系统](api/system.md)
 - 实体说明
   - [实体关联](entity/relationship.md)
-  - [标签与目标的关联](entity/tag_target.md)
-  - [系统](entity/system.md)
   - [标签](entity/tag.md)
   - [分组](entity/group.md)
+  - [标签与目标的关联](entity/tag_target.md)
+  - [系统](entity/system.md)

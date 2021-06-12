@@ -7,18 +7,21 @@ class group extends entity
         'system_id' => 0,
         'parent_group_id' => 0,
         'name' => '',
+        'extends_info' => '',
     ];
 
     public static $struct_data_types = [
         'system_id' => 'number',
         'parent_group_id' => 'number',
         'name' => 'string',
+        'extends_info' => 'string',
     ];
 
     public static $struct_display_names = [
         'system_id' => '系统ID',
         'parent_group_id' => '分组ID',
         'name' => '名称',
+        'extends_info' => '描述',
     ];
 
 
@@ -26,6 +29,7 @@ class group extends entity
         'system_id' => true,
         'parent_group_id' => false,
         'name' => true,
+        'extends_info' => false,
     ];
 
     public function __construct()
@@ -55,6 +59,14 @@ class group extends entity
                         return mb_strlen($value) <= 30;
                     },
                     'failed_message' => '不能超过 30 字',
+                ],
+            ],
+            'extends_info' => [
+                [
+                    'function' => function ($value) {
+                        return mb_strlen($value) <= 200;
+                    },
+                    'failed_message' => '不能超过 200 个字',
                 ],
             ],
         ];

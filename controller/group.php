@@ -47,10 +47,14 @@ if_post('/groups/add', function ()
     $system = dao('system')->find_by_key($key);
     otherwise_error_code(10002, $system->is_not_null(), [':key' => $key]);
 
+    $extends_info = input('extends_info', '');
+
     $group = group::create(
         $system,
         $name
     );
+
+    $group->extends_info = $extends_info;
 
     if ($parent_group_id = input('parent_group_id')) {
         $parent_group = dao('group')->find($parent_group_id);
@@ -93,6 +97,11 @@ if_post('/groups/update/*', function ($group_id)
     }
 
     $group->name = $name;
+
+    $extends_info = input('extends_info', null);
+    if (not_null($extends_info)) {
+        $group->extends_info = $extends_info;
+    }
 
     return [
         'code' => 0,

@@ -3,5 +3,9 @@ display_name: 分组
 structs:
   name:
     type: name
+  extends_info:
+    type: description
+    description: 扩展信息
+    require: false
 repeat_check_structs: []
 ...

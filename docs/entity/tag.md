@@ -23,6 +23,7 @@ tag : +delete_time
 tag : +system_id  
 tag : +group_id  
 tag : +name  
+tag : +extends_info  
 ```
 
 
@@ -44,6 +45,7 @@ erDiagram
         id system_id  
         id group_id  
         string name  
+        string extends_info  
     }
 ```
 
@@ -67,6 +69,7 @@ erDiagram
 |group_id|id|无需|外键|标签所属的分组，此处为分组的`id`|
 |tag_targets|[tag_target](entity/tag_target.md)|可选|关联关系|标签拥有的标签与目标的关联，是包含 `tag_target` 的数组|
 |name|string|必传|名称|名称|
+|extends_info|string|可选|描述|扩展信息|
 
 
 

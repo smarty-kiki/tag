@@ -19,6 +19,7 @@
 |参数键名|类型|必传|描述|
 |----|----|----|----|
 |name|string|可选|通过名称筛选|
+|extends_info|string|可选|通过描述筛选|
 |system_id|id|可选|通过关联关系 `system_id` 筛选|
 |parent_group_id|id|可选|通过关联关系 `parent_group_id` 筛选|
 
@@ -36,10 +37,11 @@
 {
     "id": 0, // 主键
     "name": "string", // 名称 
+    "extends_info": "string", // 描述 
     "system_display": "", // 关联关系 `system` 的文字化展示
     "parent_group_display": "", // 关联关系 `parent_group` 的文字化展示
-    "create_time": "1970-01-01 08:52:40", // 创建时间
-    "update_time": "1970-01-01 08:52:40", // 最后一次修改时间
+    "create_time": "2021-06-12 17:19:06", // 创建时间
+    "update_time": "2021-06-12 17:19:06", // 最后一次修改时间
 }
 ```
 
@@ -66,6 +68,7 @@
 |system_id|id|必传|设置分组所属的系统，此处传系统的`id`|
 |parent_group_id|id|可选|设置分组所属的分组，此处传分组的`id`|
 |name|string|必传|名称|
+|extends_info|string|可选|描述|
 
 **返回值：**  
 ```json
@@ -107,6 +110,7 @@
 |system_id|id|必传|设置分组所属的系统，此处传系统的`id`|
 |parent_group_id|id|可选|设置分组所属的分组，此处传分组的`id`|
 |name|string|必传|名称|
+|extends_info|string|可选|描述|
 
 **返回值：**  
 ```json
