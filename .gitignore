@@ -1,4 +1,4 @@
 /frame
 /controller/*.diff.php
 .idea
-
+*.DS_Store

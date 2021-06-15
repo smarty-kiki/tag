@@ -53,6 +53,8 @@ class tag_target extends entity
         $tag_target->class = $class;
         $tag_target->class_id = $class_id;
 
+        cache_setbit(self::REDIS_KEY_PREFIX.$system->id.'_'.$class.'_'.$tag->id, $class_id, 1);
+
         return $tag_target;
     }/*}}}*/
 
