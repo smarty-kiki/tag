@@ -16,7 +16,7 @@ command('tag:rebuild-query-booster', '重新生成 tag 的查询加速', functio
         ], 'order by id limit 1000');
 
         foreach ($tag_target_infos as $tt) {
-            $key = tag_target::REDIS_KEY_PREFIX.$tt['system_id'].'_'.$tt['class'].'_'.$tt['class_id'];
+            $key = tag_target::REDIS_KEY_PREFIX.$tt['system_id'].'_'.$tt['class'].'_'.$tt['tag_id'];
             $tmp_key = 'REBUILD_'.$key;
             $key_infos[$tmp_key] = $key;
 
