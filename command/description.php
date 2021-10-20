@@ -5,6 +5,7 @@ define('DESCRIPTION_EXTENSION_DIR', COMMAND_DIR.'/description_extension');
 define('DESCRIPTION_STRUCT_TYPE_EXTENSION_DIR', DESCRIPTION_EXTENSION_DIR.'/struct_type');
 define('DESCRIPTION_DATA_TYPE_EXTENSION_DIR', DESCRIPTION_STRUCT_TYPE_EXTENSION_DIR.'/data_type');
 define('DESCRIPTION_STRUCT_GROUP_EXTENSION_DIR', DESCRIPTION_EXTENSION_DIR.'/struct_group');
+define('DESCRIPTION_UTIL_EXTENSION_DIR', DESCRIPTION_EXTENSION_DIR.'/util');
 define('DESCRIPTION_CONTROLLER_EXTENSION_DIR', DESCRIPTION_EXTENSION_DIR.'/controller');
 define('DESCRIPTION_DOCS_EXTENSION_DIR', DESCRIPTION_EXTENSION_DIR.'/docs');
 define('DESCRIPTION_ENTITY_EXTENSION_DIR', DESCRIPTION_EXTENSION_DIR.'/entity');
@@ -24,6 +25,16 @@ function _get_data_type_controller_from_extension($action, $data_type)
 function _get_struct_group_controller_from_extension($action, $struct_group_type)
 {/*{{{*/
     $path = DESCRIPTION_CONTROLLER_EXTENSION_DIR.'/'.$action.'/struct_group/'.$struct_group_type.'.php';
+    if (is_file($path)) {
+        return file_get_contents($path);
+    }
+
+    return false;
+}/*}}}*/
+
+function _get_util_template_from_extension($action)
+{/*{{{*/
+    $path = DESCRIPTION_UTIL_EXTENSION_DIR.'/'.$action.'/util.php';
     if (is_file($path)) {
         return file_get_contents($path);
     }
